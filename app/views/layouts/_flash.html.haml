@@ -1,0 +1,6 @@
+- flashes = { notice: "success", alert: "error", error: "error", success: "success" }
+- flashes.each do |type, message|
+  - if flash[type]
+    .alert-message.alert.fade.in{ "data-alert" => "alert", class: "alert-#{message}" }
+      = flash[type]
+      = link_to "&times;".html_safe, "#", class: "close", "data-dismiss" => "alert"
