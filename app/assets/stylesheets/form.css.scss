@@ -1,0 +1,28 @@
+form {
+  textarea {
+    &.large {
+      height: 200px;
+    }
+    &.medium {
+      height: 90px;
+    }
+  }
+  input[type="text"], input[type="date"]{
+    height: 30px;
+  }
+}
+
+.error small.error {
+  margin-top: -0.5em;
+}
+
+form{
+  &.advanced_search{
+    li{
+      &.span1{
+        width: 110px;
+        margin-top: 6px;
+      }
+    }
+  }
+}
