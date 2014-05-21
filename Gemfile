@@ -29,3 +29,4 @@ end
 
 # Use debugger
 gem "debugger"
+gem "better_errors"
