@@ -10,7 +10,7 @@
     = f.input :phone, label: "Telefon"
 
     = f.fields_for :address do |builder|
-      = render "address_fields", f: builder
+      = render "shared/address_fields", f: builder
 
   .form-actions
     .pull-right
