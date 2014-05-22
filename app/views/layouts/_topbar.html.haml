@@ -7,21 +7,12 @@
         %span.icon-bar
       .nav-collapse.collapse
         %ul.nav
-          %li.dropdown
-            %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
-              = "Plik"
-              %ul.dropdown-menu
-                %li= "nowy"
-          %li.dropdown
-            %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
-              = "Edycja"
-              %ul.dropdown-menu
-                %li= "nowy"
+          = render "#{request.path.split("/")[1]}/topbar"
           %li.dropdown
             %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
               = "Widok"
               %ul.dropdown-menu
-                %li= "nowy"
+                %li= link_to "Kontrahenci", :contractors
 
       .nav-collapse.collapse
         %ul.nav.pull-right
