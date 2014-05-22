@@ -36,6 +36,12 @@ class ContractorsController < ApplicationController
   end
 
   def destroy
+    if contractor.destroy
+      redirect_to :contractors, notice: "Usunięto poprawnie"
+    else
+      flash[:alert] = "Wystąpił błąd podczas usuwania"
+      redirect_to contractor
+    end
   end
 
   private
