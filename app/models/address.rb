@@ -2,7 +2,7 @@
 class Address < ActiveRecord::Base
   belongs_to :company
 
-  validates :company, presence: true
+  validates :city, presence: true
 
   def to_s
      (first_part + comma + second_part).split.join(" ").gsub(" ,", ",")
