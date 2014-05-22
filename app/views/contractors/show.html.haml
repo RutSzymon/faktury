@@ -1,0 +1,42 @@
+= render "sidebar"
+
+.span9
+  %fieldset
+    %legend= @contractor
+    %table.table.table-striped
+      %tr
+        %td.span4
+          %b= "Nazwa"
+        %td= @contractor.name
+      %tr
+        %td.span4
+          %b= "NIP"
+        %td= @contractor.nip
+      %tr
+        %td.span4
+          %b= "Przedstawiciel firmy przyjmujący fakturę"
+        %td= @contractor.person
+      %tr
+        %td.span4
+          %b= "Telefon"
+        %td= @contractor.phone
+      %tr
+        %td.span4
+          %b= "Ulica"
+        %td= @contractor.address.street
+      %tr
+        %td.span4
+          %b= "Numer budynku"
+        %td= @contractor.address.building
+      %tr
+        %td.span4
+          %b= "Numer lokalu"
+        %td= @contractor.address.unit
+      %tr
+        %td.span4
+          %b= "Kod pocztowy"
+        %td= @contractor.address.zip_code
+      %tr
+        %td.span4
+          %b= "Miasto"
+        %td= @contractor.address.city

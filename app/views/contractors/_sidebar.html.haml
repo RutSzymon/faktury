@@ -1,0 +1,7 @@
+.span3
+  .well
+    %ul.nav.nav-list
+      %li.nav-header Kontrahenci
+      - @contractors.each do |contractor|
+        = content_tag(:li, class: active_class(contractor)) do
+          = link_to contractor, contractor
