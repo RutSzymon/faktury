@@ -1,0 +1,7 @@
+.span3
+  .well
+    %ul.nav.nav-list
+      %li.nav-header Produkty
+      - @products.each do |product|
+        = content_tag(:li, class: active_class(product)) do
+          = link_to product, product

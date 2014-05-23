@@ -1,0 +1,11 @@
+%li.dropdown
+  %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
+    = "Plik"
+    %ul.dropdown-menu
+      %li= link_to "Nowy", [:new, :product]
+%li.dropdown
+  %a.dropdown-toggle{ "data-toggle" => "dropdown", href: "#" }
+    = "Edycja"
+    %ul.dropdown-menu
+      %li= edit_link @product
+      %li= destroy_link @product

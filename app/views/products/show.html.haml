@@ -1,0 +1,20 @@
+= render "sidebar"
+
+.span9
+  %fieldset
+    %legend= @product
+    %table.table.table-striped
+      %tr
+        %td.span4
+          %b= "Nazwa"
+        %td= @product.name
+      %tr
+        %td.span4
+          %b= "Cena"
+        %td= to_currency(@product.price)
+      %tr
+        %td.span4
+          %b= "VAT"
+        %td
+          = @product.tax
+          = " %"
