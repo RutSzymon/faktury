@@ -19,4 +19,8 @@ module ApplicationHelper
   def show?
     action_name.eql?("show")
   end
+
+  def to_currency(number)
+    (("%0.2f" % number) + " zł").gsub(".", ",").html_safe
+  end
 end
