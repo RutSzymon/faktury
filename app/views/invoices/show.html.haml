@@ -1,0 +1,20 @@
+= render "sidebar"
+
+.span9
+  %fieldset
+    %legend= @invoice
+    %table.table.table-striped
+      %tr
+        %td.span4
+          %b= "Data wystawienia"
+        %td= @invoice.date
+      %tr
+        %td.span4
+          %b= "Termin płatności"
+        %td
+          = @invoice.payment_time
+          = " dni"
+      %tr
+        %td.span4
+          %b= "Kontrahent"
+        %td= @invoice.contractor

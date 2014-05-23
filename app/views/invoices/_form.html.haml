@@ -1,0 +1,17 @@
+= render "sidebar"
+
+.span9
+  = simple_form_for @invoice, html: { class: "form-horizontal" } do |f|
+    %fieldset
+      %legend= "Szczegóły faktury"
+      %ul.inline
+        %li= f.input :contractor, label: "Kontrahent", required: true, placeholder: "Znajdź kontrahenta", input_html: { id: "contractor" }
+        %li#contractor-hint.mini-hint
+      = f.input :contractor_id, as: :hidden, input_html: { id: "contractor-id" }
+
+      = f.input :date, as: :date_picker, label: "Data wystawienia"
+      = f.input :payment_time, label: "Termin płatności", collection: Invoice::PAYMENT_TIME.map{ |p| ["#{p} dni", p] }
+
+    .form-actions
+      .pull-right
+        = f.button :submit, value: "Zapisz", class: "btn-success"
