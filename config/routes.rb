@@ -3,5 +3,7 @@ Faktury::Application.routes.draw do
 
   resources :contractors
 
+  resources :products
+
   root to: "homepage#index"
 end
