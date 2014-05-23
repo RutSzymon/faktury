@@ -1,3 +1,9 @@
 .disabled_link{
   color: #cccccc !important;
 }
+
+.mini-hint{
+  font-size: xx-small;
+  color: #999999;
+  margin-right: 10px;
+}
