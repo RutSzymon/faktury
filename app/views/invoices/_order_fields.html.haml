@@ -1,0 +1,14 @@
+- subfix = SecureRandom.hex(12)
+
+= f.hidden_field :_destroy, class: "_destroy"
+= content_tag(:div, class: "well", id: subfix) do
+  %ul.inline
+    %li= f.input :product, label: "Produkt", required: true, input_html: { class: "products_input", id: "product_#{subfix}" }, placeholder: "Znajdź produkt"
+    %li{ class: "mini-hint", id: "product_#{subfix}_mini-hint" }
+    = f.input :product_id, as: :hidden, input_html: { id: "product_#{subfix}-id" }
+
+  = f.input :quantity, input_html: { style: "height: 2em;", min: 0, step: 1, type: :number }, required: true, label: "Ilość"
+
+  .pull-right
+    = link_to "Usuń", "javascript:;", class: "remove_fields btn"
+  .clearfix
