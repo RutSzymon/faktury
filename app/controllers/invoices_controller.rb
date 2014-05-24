@@ -6,6 +6,7 @@ class InvoicesController < ApplicationController
   end
 
   def show
+    @company = Company.first
   end
 
   def new
@@ -14,10 +15,10 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
-    if invoice.save
+    if invoice.orders.present? && invoice.save
       redirect_to invoice, notice: "Utworzono poprawnie"
     else
-      flash[:alert] = "Niektóre pola są niepoprawne"
+      alert
       render :new
     end
   end
@@ -26,10 +27,11 @@ class InvoicesController < ApplicationController
   end
 
   def update
-    if invoice.update_attributes(invoice_params)
+    invoice.assign_attributes(invoice_params)
+    if invoice.orders.present? && invoice.save
       redirect_to invoice, notice: "Zaktualizowano poprawnie"
     else
-      flash[:alert] = "Niektóre pola są niepoprawne"
+      alert
       render :edit
     end
   end
@@ -47,9 +49,15 @@ class InvoicesController < ApplicationController
     render json: Contractor.select{ |c| params[:term].in?(c.name) }
   end
 
+  def other_products
+    products = Product.other(params[:product_ids])
+    render json: products.select{ |p| params[:term].in?(p.name) }
+  end
+
   private
   def invoice_params
-    params.require(:invoice).permit(:date, :payment_time, :contractor_id)
+    params.require(:invoice).permit(:date, :payment_time, :contractor_id,
+      orders_attributes: [:id, :invoice_id, :product_id, :quantity, :_destroy])
   end
 
   def invoice
@@ -58,5 +66,10 @@ class InvoicesController < ApplicationController
 
   def sidebar
     @invoices = Invoice.all
+  end
+
+  def alert
+    no_orders = invoice.orders.empty?
+    flash[:alert] = no_orders ? "Dodaj chociaż jeden produkt" : "Niektóre pola są niepoprawne"
   end
 end
