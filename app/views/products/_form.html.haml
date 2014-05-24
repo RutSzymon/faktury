@@ -5,7 +5,7 @@
     %fieldset
       %legend= "Szczegóły produktu"
       = f.input :name, label: "Nazwa"
-      = f.input :price, label: "Cena (zł)", input_html: { id: "price", type: :number, style: "height: 2em;", min: 0, step: 0.01 }
+      = f.input :price, label: "Cena netto (zł)", input_html: { id: "price", type: :number, style: "height: 2em;", min: 0, step: 0.01 }
       = f.input :tax, label: "VAT (%)", collection: Product::TAX
 
     .form-actions
