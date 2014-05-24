@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522092416) do
+ActiveRecord::Schema.define(version: 20140524193042) do
 
   create_table "addresses", force: true do |t|
     t.string  "street"
@@ -31,6 +31,27 @@ ActiveRecord::Schema.define(version: 20140522092416) do
     t.string "person"
     t.string "type"
   end
+
+  create_table "invoices", force: true do |t|
+    t.date     "date"
+    t.integer  "payment_time"
+    t.integer  "contractor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invoices", ["contractor_id"], name: "index_invoices_on_contractor_id"
+
+  create_table "orders", force: true do |t|
+    t.integer  "invoice_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["invoice_id"], name: "index_orders_on_invoice_id"
+  add_index "orders", ["product_id"], name: "index_orders_on_product_id"
 
   create_table "products", force: true do |t|
     t.string  "name"
