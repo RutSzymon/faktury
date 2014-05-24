@@ -3,18 +3,64 @@
 .span9
   %fieldset
     %legend= @invoice
+    %table.table
+      %tr
+        %th{ rowspan: 2 }= "Faktura"
+        %th= @invoice.date
+        %th= @invoice.payment_date
+      %tr
+        %td
+          %b= "Data wystawienia"
+        %td
+          %b= "Termin płatności"
+
+    %table.table
+      %tr
+        %td
+          %strong= "Sprzedawca: #{@company.name}"
+          %br
+          = "Adres: #{@company.address}"
+          %br
+          = "NIP: #{@company.nip}"
+          %br
+          = "Numer telefonu: #{@company.phone}"
+          %br
+          = "Osoba wystawiająca fakturę: #{@company.person}"
+          %br
+        %td
+          %strong= "Nabywca: #{@invoice.contractor.name}"
+          %br
+          = "Adres: #{@invoice.contractor.address}"
+          %br
+          = "NIP: #{@invoice.contractor.nip}"
+          %br
+          = "Numer telefonu: #{@invoice.contractor.phone}"
+          %br
+          = "Przedstawiciel firmy przyjmujący fakturę: #{@invoice.contractor.person}"
+          %br
+
     %table.table.table-striped
       %tr
-        %td.span4
-          %b= "Data wystawienia"
-        %td= @invoice.date
+        %th= "L.p."
+        %th= "Nazwa"
+        %th= "Ilość"
+        %th= "Cena netto"
+        %th= "Cena brutto"
+        %th= "Stawka VAT"
+        %th= "Kwota VAT"
+        %th= "Wartość brutto"
+      - @invoice.orders.each_with_index do |order, i|
+        %tr
+          %td= i + 1
+          %td= order.product
+          %td= order.quantity
+          %td= to_currency order.product.price
+          %td= to_currency order.product.gross_price
+          %td= to_currency order.product.tax_rate
+          %td= to_currency order.tax_amount
+          %td= to_currency order.amount
       %tr
-        %td.span4
-          %b= "Termin płatności"
-        %td
-          = @invoice.payment_time
-          = " dni"
-      %tr
-        %td.span4
-          %b= "Kontrahent"
-        %td= @invoice.contractor
+        %td{ colspan: 5 }= ""
+        %th= "Razem:"
+        %th= to_currency @invoice.tax_sum
+        %th= to_currency @invoice.sum
