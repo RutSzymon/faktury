@@ -12,6 +12,13 @@
       = f.input :date, as: :date_picker, label: "Data wystawienia"
       = f.input :payment_time, label: "Termin płatności", collection: Invoice::PAYMENT_TIME.map{ |p| ["#{p} dni", p] }
 
+      #orders
+        %fieldset
+          %legend= "Produkty"
+          = f.fields_for :orders do |builder|
+            = render "order_fields", f: builder
+          = link_to_add_fields("Dodaj produkt", f, :orders)
+
     .form-actions
       .pull-right
         = f.button :submit, value: "Zapisz", class: "btn-success"
