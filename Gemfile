@@ -14,6 +14,7 @@ gem "jbuilder", "~> 1.2"
 gem "haml-rails"
 gem "simple_form", git: "git://github.com/plataformatec/simple_form.git"
 gem "twitter-bootstrap-rails"
+gem "nvr"
 
 group :doc do
   gem "sdoc", require: false
